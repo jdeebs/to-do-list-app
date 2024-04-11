@@ -7,12 +7,25 @@ function newItem() {
     alert("You must write something!");
   } else {
     li.text(inputValue);
-    $("ol").append(li);
+    $("#list").append(li);
+
+    // Cross out an item from the list of items when double clicked
+    li.on("dblclick", function crossOut() {
+      li.toggleClass("strike");
+    });
+
+    // Add the delete button "X"
+    let crossOutButton = $("<button></button>");
+    crossOutButton.append(document.createTextNode("X"));
+    li.append(crossOutButton);
+
+    crossOutButton.on("click", function deleteListItem() {
+      li.addClass("delete");
+    });
+
+    // Allow reordering of the items
+    $("#list").sortable();
   }
-  li.on("dblclick", crossOut);
 }
 
-// Cross out an item from the list of items
-function crossOut() {
-  $(this).toggleClass("strike");
-}
+
