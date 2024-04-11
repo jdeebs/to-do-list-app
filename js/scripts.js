@@ -19,6 +19,7 @@ function newItem() {
     crossOutButton.append(document.createTextNode("X"));
     li.append(crossOutButton);
 
+    // Delete an item from the list when the X button is clicked
     crossOutButton.on("click", function deleteListItem() {
       li.addClass("delete");
     });
